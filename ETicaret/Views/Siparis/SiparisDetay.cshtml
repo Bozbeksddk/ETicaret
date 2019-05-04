@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ETicaret.Models.SiparisKalem>
+
+
+<div class="jumbotron">
+    <h1>SiparisDetay</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Adet</th>
+        <th>Toplam Tutar</th>
+        <th>Ürünler</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Adet)</td>
+        <td>@Html.DisplayFor(modelItem => item.ToplamTutar)</td>
+        <td>@Html.DisplayFor(modelItem => item.Urunler.UrunAdi)</td>
+    </tr>
+    }
+</table>

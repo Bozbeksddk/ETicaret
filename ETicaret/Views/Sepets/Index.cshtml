@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ETicaret.Models.Sepet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron">
+    <h1>Sepet</h1>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Ürün Resmi
+        </th>
+        <th>
+            Ürün Adı
+        </th>
+        <th>
+            Adet
+        </th>
+        <th>
+            Toplam Tutar
+        </th>
+        <th>
+           @*Sil*@ 
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           <img src="~/Resim/@(item.RefUrunID).jpg" style="max-width:100%;">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Urunler.UrunAdi)
+        </td>
+        <td>
+           <form action="/Sepets/SepetGuncelle" method="post">
+               <input type="hidden" name="id" id="id" value="@item.SepetID" />
+               <input type="number" name="adet" id="adet" value="@item.Adet" />
+               <input type="submit" id="gonder" value="Güncelle" />
+           </form>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToplamTutar) TL
+        </td>
+        <td>
+           
+            @Html.ActionLink("Sil", "Sil", new { id=item.SepetID })
+        </td>
+    </tr>
+    <tr>
+
+        <th>
+
+        </th>
+
+        <th>
+            Toplam
+        </th>
+        <th>
+            @Model.Sum(a => a.Adet)
+        </th>
+
+        <th>
+            @Model.Sum(a => a.ToplamTutar) TL
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><a class=" btn btn-default" href="@Url.Action("Index","Home")">Alışverişi Devam Et</a></td>
+        <td colspan="4"><a class=" btn btn-default" href="@Url.Action("SiparisTamamla","Siparis")">Alışverişi Tamamla</a></td>
+    </tr>
+}
+
+</table>

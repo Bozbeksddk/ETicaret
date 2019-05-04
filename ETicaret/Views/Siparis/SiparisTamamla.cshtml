@@ -1,0 +1,159 @@
+﻿@model ETicaret.Models.Siparis
+@{
+    ViewBag.Title = "Siparis Tamamlama Bölümü";
+   
+}
+
+<div class="jumbotron">
+    <h1>Siparis Tamamla Bölümü</h1>
+</div>
+
+<form action="@ViewBag.PostURL" method="post">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                <h4>Teslimat Bilgileri</h4>
+                </hr>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Ad">Adı</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Ad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Soyad">Soyadı</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Soyad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Adres">Adres</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Adres, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Adres, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Telefon">Telefon</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Telefon, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="TcKimlikNo">TcKimlik</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.TcKimlikNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TcKimlikNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Tarih">Tarih</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Tarih, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Tarih, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Eposta">Eposta</label>
+
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.Eposta, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Eposta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                <h4>Kart Bilgileri</h4>
+                </HR>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Ad Soyad">AD SOYAD</label>
+                    <div class="col-md-6">
+                        <input name="kartisimsoyisim" type="text" maxlength="255"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Kredi Kart No">KREDİ KART NO</label>
+                    <div class="col-md-6">
+                        <input type="text" name="kkartno" autocomplete="off" />
+                        <input type="hidden" name="clientid" value="@ViewBag.ClientId" />
+                        <input type="hidden" name="oid" value="@ViewBag.Oid" />
+                        <input type="hidden" name="okURL" value="@ViewBag.okURL" />
+                        <input type="hidden" name="failURL" value="@ViewBag.failURL" />
+                        <input type="hidden" name="islemtipi" value="@ViewBag.TransActionType" />
+                        <input type="hidden" name="rnd" value="@ViewBag.RDN" />
+                        <input type="hidden" name="hash" value="@ViewBag.Hash" />
+                        <input type="hidden" name="storetype" value="@ViewBag.StoreType" />
+                        <input type="hidden" name="refreshtime" value="10" />
+                        <input type="hidden" name="lang" value="@ViewBag.Lang" />
+                        <input type="hidden" name="currency" value="949" />
+                        <input type="hidden" name="amount" value="@ViewBag.Amount" />
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Son Kullanma Tarihi">SON KULLANMA TARİHİ</label>
+                    <div class="col-md-6">
+                        <select class="sec" style="float:left;width:75px;"
+                                name="Ecom-Payment_Card_ExpDate_Month">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12" selected="selected">12</option>
+                        </select>
+                        <select class="sec" style="float:left;width:75px;"
+                                name="Ecom-Payment_Card_ExpDate_Year">
+                            <option value="17">17</option>
+                            <option value="18" selected="selected">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">CVC</label>
+                    <div class="col-md-6">
+                        <input autocomplete="off" id="contact-phone" name="cvCode" type="text" value="000"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-6">
+                        <input type="submit" value="Ödeme Tamamla" class="btn btn-default"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

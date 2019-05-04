@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ETicaret.Models.Siparis>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="jumbotron">
+    <h1>Sipariş Listesi</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+           Adı Soyadı
+        </th>
+        <th>
+            
+        </th>
+        <th>
+            Adres
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Tc Kimlik No
+        </th>
+        <th>
+           Sipariş Tarihi
+        </th>
+        <th>
+            Eposta
+        </th>
+        <th>
+            Ürün Adet
+        </th>
+        <th>
+            Toplam Tutar
+        </th>
+        <th>
+            Sipariş Detay
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+ 
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TcKimlikNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eposta)
+        </td>
+        <td>
+            @item.SiparisKalem.Sum(t=>t.Adet)
+        </td>
+        <td>
+            @item.SiparisKalem.Sum(ttutar=>ttutar.ToplamTutar)
+        </td>
+        <td>
+            @Html.ActionLink("Detay", "SiparisDetay", new { id=item.SiparisID }) |
+            
+        </td>
+    </tr>
+}
+
+</table>
